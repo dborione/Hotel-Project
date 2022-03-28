@@ -15,6 +15,10 @@ services:
       # - ./docker/db/data:/var/lib/postgresql/data:rw
 ###< doctrine/doctrine-bundle ###
 
+  mailer:
+    image:schickling/mailcatcher
+    ports:[1025, 1080]
+
 volumes:
 ###> doctrine/doctrine-bundle ###
   db-data:
