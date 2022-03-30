@@ -1,5 +1,5 @@
-# Hotel-Project
-Hypnos Hotels est un site internet dédié à la réservation de suitess d'Hotel.
+# Hotel-Project: Hypnos Hotels
+Hypnos Hotels est un site internet dédié à la réservation de suites d'établissemenst situés dans toute la France, sans intégration de paiement.
 
 ## Environnement de développement
 
@@ -8,6 +8,8 @@ Hypnos Hotels est un site internet dédié à la réservation de suitess d'Hotel
 * PHP 8.0.17
 * Composer
 * Symfony CLI
+* Docker
+* Docker-compose
 --> Verifier les pré-requis:
 
 ```bash
@@ -17,11 +19,16 @@ symfony check: requirements
 ### Lancer l'environnement de développement
 
 ```bash
-symfony server: start
+docker-compose up -d
+symfony serve -d
 ```
 
+```bash
+composer require doctrine/doctrine-bundle 
+```
+--> installe docker en meme temps
 
-composer require doctrine/doctrine-bundle --> installe docker en meme temps
+
 
 --> installed Docker Desktop 4.6.1
 
