@@ -3,23 +3,15 @@ version: '3'
 services:
 ###> doctrine/doctrine-bundle ###
   database:
-    image: postgres:${POSTGRES_VERSION:-13}-alpine
+    image: 'mariadb:10.6.7'
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
-      POSTGRES_USER: ${POSTGRES_USER:-symfony}
-    volumes:
-      - db-data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
-###< doctrine/doctrine-bundle ###
-
+      MYSQLMYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: main
+    ports:
+      - '3306'
+  ###> symfony/mailer ###
   mailer:
-    image:schickling/mailcatcher
-    ports:[1025, 1080]
-
-volumes:
-###> doctrine/doctrine-bundle ###
-  db-data:
+    image: schickling/mailcatcher
+    ports: [1025, 1080]
+  ###< symfony/mailer ###
 ###< doctrine/doctrine-bundle ###
