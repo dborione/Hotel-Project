@@ -5,7 +5,7 @@ services:
   database:
     image: 'mariadb:10.6.7'
     environment:
-      MYSQLMYSQL_ROOT_PASSWORD: password
+      MARIADB_PASSWORD: password123
       MYSQL_DATABASE: main
     ports:
       - '3306'

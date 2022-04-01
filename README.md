@@ -32,6 +32,14 @@ composer require doctrine/doctrine-bundle
 
 --> installed Docker Desktop 4.6.1
 
+Make sure to regularly check security issues:
+```bash
+symfony check:security
+```
+
+*composer require symfony/orm-pack
+*composer require --dev symfony/maker-bundle
+*php bin/console doctrine:database:create
 
 
 
