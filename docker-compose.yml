@@ -5,8 +5,9 @@ services:
   database:
     image: 'mariadb:10.6.7'
     environment:
-      MARIADB_PASSWORD: password123
+      restart: always
       MYSQL_DATABASE: main
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 'yes'
     ports:
       - '3306'
   ###> symfony/mailer ###
