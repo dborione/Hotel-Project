@@ -18,11 +18,15 @@ symfony check: requirements
 
 ### Lancer l'environnement de développement
 
-* lancer serveurs Docker (4.6.1):
+* lancer/stopper serveurs Docker (4.6.1):
 
 ```bash
 docker-compose up -d
 symfony serve -d
+```
+```bash
+docker-compose stop
+symfony server:stop
 ```
 
 * créer database:
@@ -43,6 +47,25 @@ composer require doctrine/doctrine-bundle
 ```bash
 symfony console make:user
 ```
+
+```bash
+symfony console make:entity
+```
+
+php bin/console make:migration
+--> In ExceptionConverter.php line 103:
+
+  An exception occurred in the driver: SQLSTATE[HY000] [1045] Access denied for user 'db_user'@'localhost' (using password: YES)  
+
+
+In Exception.php line 30:
+
+  SQLSTATE[HY000] [1045] Access denied for user 'db_user'@'localhost' (using password: YES)  
+
+
+In Driver.php line 28:
+
+  SQLSTATE[HY000] [1045] Access denied for user 'db_user'@'localhost' (using password: YES)  
 
 > Make sure to regularly check security issues:
     ```bash
