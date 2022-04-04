@@ -18,30 +18,39 @@ symfony check: requirements
 
 ### Lancer l'environnement de développement
 
+* lancer serveurs Docker (4.6.1):
+
 ```bash
 docker-compose up -d
 symfony serve -d
 ```
+
+* créer database:
 
 ```bash
 composer require doctrine/doctrine-bundle 
 ```
 --> installe docker en meme temps
 
-
-
---> installed Docker Desktop 4.6.1
-
-Make sure to regularly check security issues:
-```bash
-symfony check:security
-```
-
-
 *composer require symfony/orm-pack
 *composer require --dev symfony/maker-bundle
     *php bin/console doctrine:database:create 
     OU
     *symfony console make:docker:database
+
+* créer entités:
+
+```bash
+symfony console make:user
+```
+
+> Make sure to regularly check security issues:
+    ```bash
+    symfony check:security
+    ```
+
+
+
+
 
 
