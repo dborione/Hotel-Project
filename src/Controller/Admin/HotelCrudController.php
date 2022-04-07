@@ -6,6 +6,7 @@ use App\Entity\Hotel;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class HotelCrudController extends AbstractCrudController
@@ -18,15 +19,19 @@ class HotelCrudController extends AbstractCrudController
     
     public function configureFields(string $pageName): iterable
     {
+        yield AssociationField::new('manager_id')->autocomplete();
+
         return [
             TextField::new('hotelName'),
             TextField::new('hotelCity'),
             TextField::new('hotelAddress'),
-            //TextField::new('manager'),
+            //IdField::new('manager_id'),
             //IdField::new('admin_id'),
             TextField::new('hotelSlug'),
             TextEditorField::new('hotelDescription'),
         ];
+
+
     }
     
 }

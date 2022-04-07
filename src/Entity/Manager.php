@@ -36,8 +36,7 @@ class Manager implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\JoinColumn(nullable: false)]
     private $admin;
 
-    #[ORM\OneToOne(inversedBy: 'manager', targetEntity: Hotel::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\OneToOne(mappedBy: 'manager', targetEntity: Hotel::class, cascade: ['persist', 'remove'])]
     private $hotel;
 
     #[ORM\OneToMany(mappedBy: 'manager', targetEntity: Suite::class)]
@@ -180,11 +179,17 @@ class Manager implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setHotel(Hotel $hotel): self
     {
+        // set the owning side of the relation if necessary
+        if ($hotel->getManager() !== $this) {
+            $hotel->setManager($this);
+        }
+
         $this->hotel = $hotel;
 
         return $this;
     }
 
+    
     /**
      * @return Collection<int, Suite>
      */
