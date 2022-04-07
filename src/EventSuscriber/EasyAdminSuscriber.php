@@ -25,8 +25,12 @@ class EasyAdminSubscriber implements EventSubscriberInterface
     {
         // return the subscribed events, their methods and priorities
         return [
-            BeforeEntityPersistedEvent::class => ['setHotelSlugAndUser'],
+            BeforeEntityPersistedEvent::class => ['setHotelSlug'],
         ];
+
+        //return [
+        //    BeforeEntityPersistedEvent::class => ['setHotelSlugAndUser'],
+        //];
     }
 
     public function setHotelSlugandUser(BeforeEntityPersistedEvent $event)
@@ -38,10 +42,10 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         }
 
         $slug = $this->slugger->slug($entity->getHotelName());
-        $entity->setSlug($slug);
+        $entity->setHotelSlug($slug);
 
-        $user= $this->security->getUser();
-        $entity->setUser($user);
+        //$user= $this->security->getUser();
+        //$entity->setUser($user);
     }
 
 }

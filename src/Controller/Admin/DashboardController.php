@@ -25,9 +25,6 @@ class DashboardController extends AbstractDashboardController
 
         // Option 2. You can make your dashboard redirect to different pages depending on the user
         //
-        // if ('jane' === $this->getUser()->getUsername()) {
-        //     return $this->redirect('...');
-        // }
 
         // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
         // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
@@ -45,6 +42,6 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Hotels', 'fas fa-hotel', Hotel::class);
-        //yield MenuItem::linkToCrud('Managers', 'fas fa-hotel', Manager::class);
+        yield MenuItem::linkToCrud('Managers', 'fas fa-hotel', Manager::class);
     }
 }

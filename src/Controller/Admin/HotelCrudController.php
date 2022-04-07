@@ -23,6 +23,7 @@ class HotelCrudController extends AbstractCrudController
             TextField::new('hotelCity'),
             TextField::new('hotelAddress'),
             //TextField::new('manager'),
+            //IdField::new('admin_id'),
             TextField::new('hotelSlug'),
             TextEditorField::new('hotelDescription'),
         ];
