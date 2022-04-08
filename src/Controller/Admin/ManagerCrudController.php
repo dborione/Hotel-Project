@@ -19,6 +19,9 @@ class ManagerCrudController extends AbstractCrudController
         return [
             TextField::new('managerLastName'),
             TextField::new('managerFirstName'),
+            //TextField::new('managerEmail'),
+            //TextField::new('managerPassword'),
+            
         ];
     }
     

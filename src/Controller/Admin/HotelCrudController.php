@@ -19,7 +19,7 @@ class HotelCrudController extends AbstractCrudController
     
     public function configureFields(string $pageName): iterable
     {
-        yield AssociationField::new('manager_id')->autocomplete();
+        yield AssociationField::new('manager');
 
         return [
             TextField::new('hotelName'),
