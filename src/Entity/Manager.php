@@ -34,9 +34,9 @@ class Manager implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255)]
     private $managerFirstName;
 
-    #[ORM\ManyToOne(targetEntity: Admin::class, inversedBy: 'manager')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $admin;
+    //#[ORM\ManyToOne(targetEntity: Admin::class, inversedBy: 'manager')]
+    //#[ORM\JoinColumn(nullable: false)]
+    //private $admin;
 
     #[ORM\OneToOne(mappedBy: 'manager', targetEntity: Hotel::class, cascade: ['persist', 'remove'])]
     private $hotel;
@@ -162,17 +162,17 @@ class Manager implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAdmin(): ?Admin
-    {
-        return $this->admin;
-    }
+    //public function getAdmin(): ?Admin
+    //{
+    ///    return $this->admin;
+    //}
 
-    public function setAdmin(?Admin $admin): self
-    {
-        $this->admin = $admin;
+    //public function setAdmin(?Admin $admin): self
+    //{
+    //    $this->admin = $admin;
 
-        return $this;
-    }
+    //    return $this;
+    //}
 
     public function getHotel(): ?Hotel
     {
