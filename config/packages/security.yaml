@@ -15,23 +15,35 @@ security:
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
         # used to reload user from session & other features (e.g. switch_user)
-        app_manager_provider:
+        backend_users:
+            entity:
+                class: App\Entity\Admin
+                property: email
+
+        manager_users:
             entity:
                 class: App\Entity\Manager
                 property: email
-        app_user_provider:
+
+        users:
             entity:
                 class: App\Entity\Client
                 property: email
+
+        all_users:
+            chain:
+                providers: ['users', 'manager_users', 'backend_users']
+
         # used to reload user from session & other features (e.g. switch_user)
         # used to reload user from session & other features (e.g. switch_user)
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
         main:
             lazy: true
-            provider: app_user_provider
+            provider: all_users
             custom_authenticator: App\Security\AppAuthenticator
             logout:
                 path: app_logout
@@ -48,7 +60,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/profile, roles: ROLE_USER }
+    #    - { path: ^/profile, roles: ROLE_USER }
 
 when@test:
     security:
