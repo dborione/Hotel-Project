@@ -45,7 +45,6 @@ class RegistrationController extends AbstractController
                 $request
             );
 
-            //return new RedirectResponse($this->urlGenerator->generate('home'));
         }
 
         return $this->render('registration/register.html.twig', [

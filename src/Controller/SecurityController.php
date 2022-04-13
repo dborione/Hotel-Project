@@ -28,22 +28,22 @@ class SecurityController extends AbstractController
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
-    //public function index(): RedirectResponse
-    //{
+    public function index(): RedirectResponse
+    {
         // redirects to the "home" route
-        //if ($this->getUser('ROLE_USER')) {
-        //    return $this->redirectToRoute('home');
-        //}
+        if ($this->getUser('ROLE_USER')) {
+            return $this->redirectToRoute('app_home');
+        }
 
-        //if ($this->getUser('ROLE_MANAGER')) {
-        //    return $this->redirectToRoute('home');
-        //}
+        if ($this->getUser('ROLE_MANAGER')) {
+            return $this->redirectToRoute('app_home');
+        }
 
-        //if ($this->getUser('ROLE_ADMIN')) {
-        //    return $this->redirectToRoute('admin');
-        //}
+        if ($this->getUser('ROLE_ADMIN')) {
+            return $this->redirectToRoute('app_admin');
+        }
         //if ($this->getUser('ROLE_USER')) {
         //    return new RedirectResponse($this->urlGenerator->generate('home'));
         //}
-    //}
+    }
 }
