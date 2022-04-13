@@ -19,7 +19,7 @@ class HotelCrudController extends AbstractCrudController
     
     public function configureFields(string $pageName): iterable
     {
-        yield AssociationField::new('manager');
+        //yield AssociationField::new('manager');
 
         return [
             TextField::new('hotelName'),
@@ -29,6 +29,7 @@ class HotelCrudController extends AbstractCrudController
             //IdField::new('admin_id'),
             TextField::new('hotelSlug'),
             TextEditorField::new('hotelDescription'),
+            AssociationField::new('manager')
         ];
 
 

@@ -6,10 +6,12 @@ use App\Repository\ManagerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: ManagerRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class Manager implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -32,9 +34,9 @@ class Manager implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255)]
     private $managerFirstName;
 
-    #[ORM\ManyToOne(targetEntity: Admin::class, inversedBy: 'manager')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $admin;
+    //#[ORM\ManyToOne(targetEntity: Admin::class, inversedBy: 'manager')]
+    //#[ORM\JoinColumn(nullable: false)]
+    //private $admin;
 
     #[ORM\OneToOne(mappedBy: 'manager', targetEntity: Hotel::class, cascade: ['persist', 'remove'])]
     private $hotel;
@@ -89,7 +91,7 @@ class Manager implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        $roles[] = 'ROLE_MANAGER';
 
         return array_unique($roles);
     }
@@ -160,17 +162,17 @@ class Manager implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAdmin(): ?Admin
-    {
-        return $this->admin;
-    }
+    //public function getAdmin(): ?Admin
+    //{
+    ///    return $this->admin;
+    //}
 
-    public function setAdmin(?Admin $admin): self
-    {
-        $this->admin = $admin;
+    //public function setAdmin(?Admin $admin): self
+    //{
+    //    $this->admin = $admin;
 
-        return $this;
-    }
+    //    return $this;
+    //}
 
     public function getHotel(): ?Hotel
     {
@@ -218,5 +220,11 @@ class Manager implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->managerFirstName;
+        //return $this->managerLastName;
     }
 }
