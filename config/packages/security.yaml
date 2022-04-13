@@ -60,6 +60,8 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/manager-panel, roles: ROLE_ADMIN }
+        - { path: ^/manager-panel, roles: ROLE_MANAGER }
     #    - { path: ^/profile, roles: ROLE_USER }
 
 when@test:
