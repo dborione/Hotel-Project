@@ -31,8 +31,8 @@ class SecurityController extends AbstractController
     public function index(): RedirectResponse
     {
         // redirects to the "home" route
-        if ($this->getUser('ROLE_USER')) {
-            return $this->redirectToRoute('app_home');
+        if ($this->getUser('App/Entity/Admin')) {
+            return $this->redirectToRoute('admin');
         }
 
         if ($this->getUser('ROLE_MANAGER')) {
