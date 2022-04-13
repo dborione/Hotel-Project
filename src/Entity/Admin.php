@@ -26,16 +26,16 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private $password;
 
-    #[ORM\OneToMany(mappedBy: 'admin', targetEntity: Manager::class)]
-    private $manager;
+    //#[ORM\OneToMany(mappedBy: 'admin', targetEntity: Manager::class)]
+    //private $manager;
 
-    #[ORM\OneToMany(mappedBy: 'admin', targetEntity: Hotel::class)]
-    private $hotel;
+    //#[ORM\OneToMany(mappedBy: 'admin', targetEntity: Hotel::class)]
+    //private $hotel;
 
     public function __construct()
     {
-        $this->manager = new ArrayCollection();
-        $this->hotel = new ArrayCollection();
+        //$this->manager = new ArrayCollection();
+        //$this->hotel = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -80,7 +80,7 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        $roles[] = 'ROLE_ADMIN';
 
         return array_unique($roles);
     }
@@ -127,63 +127,63 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    /**
-     * @return Collection<int, Manager>
-     */
-    public function getManager(): Collection
-    {
-        return $this->manager;
-    }
+    ///**
+    // * @return Collection<int, Manager>
+    // */
+    //public function getManager(): Collection
+    //{
+    //    return $this->manager;
+    //}
 
-    public function addManager(Manager $manager): self
-    {
-        if (!$this->manager->contains($manager)) {
-            $this->manager[] = $manager;
-            $manager->setAdmin($this);
-        }
+    //public function addManager(Manager $manager): self
+    //{
+    //    if (!$this->manager->contains($manager)) {
+    //        $this->manager[] = $manager;
+    //        $manager->setAdmin($this);
+    //    }
 
-        return $this;
-    }
+    //    return $this;
+    //}
 
-    public function removeManager(Manager $manager): self
-    {
-        if ($this->manager->removeElement($manager)) {
-            // set the owning side to null (unless already changed)
-            if ($manager->getAdmin() === $this) {
-                $manager->setAdmin(null);
-            }
-        }
+    //public function removeManager(Manager $manager): self
+    //{
+    //    if ($this->manager->removeElement($manager)) {
+    //        // set the owning side to null (unless already changed)
+    //        if ($manager->getAdmin() === $this) {
+    //            $manager->setAdmin(null);
+    //        }
+    //    }
 
-        return $this;
-    }
+    //    return $this;
+    //}
 
-    /**
-     * @return Collection<int, Hotel>
-     */
-    public function getHotel(): Collection
-    {
-        return $this->hotel;
-    }
+    ///**
+    // * @return Collection<int, Hotel>
+    // */
+    //public function getHotel(): Collection
+    //{
+    //    return $this->hotel;
+    //}
 
-    public function addHotel(Hotel $hotel): self
-    {
-        if (!$this->hotel->contains($hotel)) {
-            $this->hotel[] = $hotel;
-            $hotel->setAdmin($this);
-        }
+    //public function addHotel(Hotel $hotel): self
+    //{
+    //    if (!$this->hotel->contains($hotel)) {
+    //        $this->hotel[] = $hotel;
+    //        $hotel->setAdmin($this);
+    //    }
 
-        return $this;
-    }
+    //    return $this;
+    //}
 
-    public function removeHotel(Hotel $hotel): self
-    {
-        if ($this->hotel->removeElement($hotel)) {
-            // set the owning side to null (unless already changed)
-            if ($hotel->getAdmin() === $this) {
-                $hotel->setAdmin(null);
-            }
-        }
+    //public function removeHotel(Hotel $hotel): self
+    //{
+    //    if ($this->hotel->removeElement($hotel)) {
+    //        // set the owning side to null (unless already changed)
+    //        if ($hotel->getAdmin() === $this) {
+    //            $hotel->setAdmin(null);
+    //        }
+    //    }
 
-        return $this;
-    }
+    //    return $this;
+    //}
 }

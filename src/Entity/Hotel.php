@@ -28,11 +28,12 @@ class Hotel
     #[ORM\Column(type: 'string', length: 255)]
     private $hotelSlug;
 
-    #[ORM\ManyToOne(targetEntity: Admin::class, inversedBy: 'hotel')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $admin;
+    //#[ORM\ManyToOne(targetEntity: Admin::class, inversedBy: 'hotel')]
+    //#[ORM\JoinColumn(nullable: false)]
+    //private $admin;
 
-    #[ORM\OneToOne(mappedBy: 'hotel', targetEntity: Manager::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'hotel', targetEntity: Manager::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
     private $manager;
 
     public function getId(): ?int
@@ -100,17 +101,17 @@ class Hotel
         return $this;
     }
 
-    public function getAdmin(): ?Admin
-    {
-        return $this->admin;
-    }
+    //public function getAdmin(): ?Admin
+    //{
+    //    return $this->admin;
+    //}
 
-    public function setAdmin(?Admin $admin): self
-    {
-        $this->admin = $admin;
+    //public function setAdmin(?Admin $admin): self
+    //{
+    //    $this->admin = $admin;
 
-        return $this;
-    }
+    //    return $this;
+    //}
 
     public function getManager(): ?Manager
     {
@@ -119,13 +120,9 @@ class Hotel
 
     public function setManager(Manager $manager): self
     {
-        // set the owning side of the relation if necessary
-        if ($manager->getHotel() !== $this) {
-            $manager->setHotel($this);
-        }
-
         $this->manager = $manager;
 
         return $this;
     }
+
 }

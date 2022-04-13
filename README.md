@@ -72,6 +72,8 @@ In Driver.php line 28:
     symfony check:security
     ```
 
+symfony console make:admin:crud
+composer require symfony/webpack-encore-bundle
 
 
 
