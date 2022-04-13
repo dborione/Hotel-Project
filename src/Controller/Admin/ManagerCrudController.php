@@ -4,15 +4,19 @@ namespace App\Controller\Admin;
 
 use App\Entity\Manager;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 //#[Route('/managers', name: 'app_managers')]
 class ManagerCrudController extends AbstractCrudController
 {
+    //$hotelmanager->setRoles(["ROLE_MANAGER"]);
+
     public static function getEntityFqcn(): string
     {
         return Manager::class;
+        //property: 'roles';
     }
 
     public function configureFields(string $pageName): iterable
@@ -25,9 +29,11 @@ class ManagerCrudController extends AbstractCrudController
             TextField::new('managerFirstName'),
             TextField::new('Email'),
             TextField::new('Password'),
+            //ChoiceField::new('Roles');
             //TextField::new('Password'),
-            
-        ];
+            //->setRoles(["ROLE_MANAGER"]);
+            //->add('userRoles')
+            ];
     }
     
 }
