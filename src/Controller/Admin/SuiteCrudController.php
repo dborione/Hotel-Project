@@ -38,6 +38,7 @@ class SuiteCrudController extends AbstractCrudController
             //    $ManagerRepository->createQueryBuilder('manager')
             //        ->where('entity.some_property = :some_value')
             //        ->setParameter('some_value', '...')
+            //
         ];
 
 

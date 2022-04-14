@@ -44,5 +44,6 @@ class ManagerDashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Suites', 'fas fa-hotel', Suite::class);
         yield MenuItem::linkToLogout('Logout', 'fa fa-exit');
+        //
     }
 }
