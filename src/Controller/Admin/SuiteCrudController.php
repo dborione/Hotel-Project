@@ -24,7 +24,6 @@ class SuiteCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         
-
         return [
             TextField::new('suiteName'),
             TextField::new('suiteSlug'),
@@ -40,7 +39,6 @@ class SuiteCrudController extends AbstractCrudController
             //        ->setParameter('some_value', '...')
             //
         ];
-
 
     }
 }
