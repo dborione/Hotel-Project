@@ -39,6 +39,7 @@ class Manager implements UserInterface, PasswordAuthenticatedUserInterface
     //private $admin;
 
     #[ORM\OneToOne(mappedBy: 'manager', targetEntity: Hotel::class, cascade: ['persist', 'remove'])]
+    //#[ORM\JoinColumn(nullable: false)]
     private $hotel;
 
     #[ORM\OneToMany(mappedBy: 'manager', targetEntity: Suite::class)]
@@ -89,11 +90,12 @@ class Manager implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getRoles(): array
     {
-        $roles = $this->roles;
+        //$roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_MANAGER';
+        //$roles[] = 'ROLE_MANAGER';
 
-        return array_unique($roles);
+        //return array_unique($roles);
+        return array_unique($this->roles);
     }
 
     public function setRoles(array $roles): self
