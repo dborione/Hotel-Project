@@ -4,8 +4,6 @@ namespace App\Controller\Admin;
 
 use App\Entity\Manager;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
@@ -13,7 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 class ManagerCrudController extends AbstractCrudController
 {
     //$hotelmanager->setRoles(["ROLE_MANAGER"]);
-
+  
     public static function getEntityFqcn(): string
     {
         return Manager::class;
@@ -28,11 +26,10 @@ class ManagerCrudController extends AbstractCrudController
             'Manager' => 'ROLE_MANAGER'];
 
         return [
-            TextField::new('managerFirstName'),
             TextField::new('managerLastName'),
+            TextField::new('managerFirstName'),
             TextField::new('Email'),
             TextField::new('Password'),
-            //ChoiceField::new('Roles');
             //TextField::new('Password'),
             //->setRoles(["ROLE_MANAGER"]);
             //->add('userRoles')
@@ -46,24 +43,18 @@ class ManagerCrudController extends AbstractCrudController
                 ///->autocomplete(true)
                 //->renderExpanded()
                 ///->renderAsBadges()
-            
+          
             ChoiceField::new('roles', 'Roles')
                 //->setChoices(['Manager' => 'ROLE_MANAGER'])
                 ->autocomplete(true)
                 ->setChoices(array_combine($roles, $roles))
                 ->allowMultipleChoices()
                 ->renderExpanded()
-                
-                
-
-
-
-
+          
+          
             //ArrayField::new('roles')
-        ];
-        
             
+        ];
     }
-
     
 }
