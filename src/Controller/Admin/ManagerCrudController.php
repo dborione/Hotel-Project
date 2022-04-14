@@ -36,7 +36,8 @@ class ManagerCrudController extends AbstractCrudController
             //TextField::new('Password'),
             //->setRoles(["ROLE_MANAGER"]);
             //->add('userRoles')
-            AssociationField::new('hotel'),
+            AssociationField::new('hotel')
+                ->setHelp('Please create a new Hotel before selecting an hotel in this field!'),
 
             //ChoiceField::new('roles')
                 ///->setChoices($roles)

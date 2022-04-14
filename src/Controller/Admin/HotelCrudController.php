@@ -22,7 +22,8 @@ class HotelCrudController extends AbstractCrudController
         //yield AssociationField::new('manager');
 
         return [
-            TextField::new('hotelName'),
+            TextField::new('hotelName')
+                ->setHelp('Please create the Hotel Manager before creating a new Hotel!'),
             TextField::new('hotelCity'),
             TextField::new('hotelAddress'),
             //IdField::new('manager_id'),

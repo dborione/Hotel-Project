@@ -15,12 +15,12 @@ security:
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
         # used to reload user from session & other features (e.g. switch_user)
-        backend_users:
+        admin:
             entity:
                 class: App\Entity\Admin
                 property: email
 
-        manager_users:
+        managers:
             entity:
                 class: App\Entity\Manager
                 property: email
@@ -32,7 +32,7 @@ security:
 
         all_users:
             chain:
-                providers: ['users', 'manager_users', 'backend_users']
+                providers: ['users', 'managers', 'admin']
 
         # used to reload user from session & other features (e.g. switch_user)
         # used to reload user from session & other features (e.g. switch_user)
@@ -62,6 +62,7 @@ security:
         - { path: ^/admin, roles: ROLE_ADMIN }
         #- { path: ^/manager-panel, roles: ROLE_ADMIN }
         - { path: ^/manager-panel, roles: ROLE_MANAGER }
+        - { path: ^/manager-panel, roles: ROLE_ADMIN }
     #    - { path: ^/profile, roles: ROLE_USER }
 
 when@test:
