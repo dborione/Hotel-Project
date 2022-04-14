@@ -3,5 +3,21 @@
 {% block title %}Hypnos Administration Panel{% endblock %}
 
 {% block content %}
-<div class="text-blue-700">Welcome to Hypnos Hotels Administration Panel</div>
+
+<div class="text-blue-700">Welcome to your Hypnos Hotels Manager Panel
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }}, your hotel is {{ app.user.Hotel}}!
+        </div>
+    {% endif %}
+
+<div class="-mr-2 flex items-center md:hidden">
+                  <button type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-expanded="false">
+                    <a href="/home" class="font-medium text-indigo-600 hover:text-indigo-500">Go back to Home Page</a>
+                  </button>
+                </div>
+    
+</div>
+
 {% endblock %}
