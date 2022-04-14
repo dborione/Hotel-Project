@@ -33,6 +33,7 @@ class ManagerCrudController extends AbstractCrudController
             //TextField::new('Password'),
             //->setRoles(["ROLE_MANAGER"]);
             //->add('userRoles')
+            AssociationField::new('hotel')
             ];
     }
     
