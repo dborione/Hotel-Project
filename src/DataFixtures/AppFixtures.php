@@ -39,7 +39,6 @@ class AppFixtures extends Fixture
         $suite->setSuiteSlug('skate-or-die');
         $suite->setSuitePrice($faker->numberBetween(0, 200));
         $suite->setHotel( 
-
             $hotel->setHotelName($faker->word()),
             $hotel->setHotelCity($faker->city()),
             $hotel->setHotelDescription($faker->text()),
@@ -53,8 +52,17 @@ class AppFixtures extends Fixture
                 $hotelmanager->setPassword($this->passwordHasher->hashPassword(
                     $hotelmanager,
                     "manager123")),
-            ),     
-        );
+                )); 
+        $suite->setManager(  
+            $hotelmanager->setEmail('manager@test.com'),
+            $hotelmanager->setRoles(["ROLE_MANAGER"]),
+            $hotelmanager->setmanagerFirstName($faker->firstName()),
+            $hotelmanager->setmanagerLastName($faker->lastName()),
+            $hotelmanager->setPassword($this->passwordHasher->hashPassword(
+                $hotelmanager,
+                "manager123"))
+        );   
+        
 
         $admin->setEmail('admin@test.com');
         $admin->setRoles(["ROLE_ADMIN"]);
