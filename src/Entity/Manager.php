@@ -93,12 +93,15 @@ class Manager implements UserInterface, PasswordAuthenticatedUserInterface
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_MANAGER';
 
-        return array_unique($roles);
+        //return array_unique($roles);
+        return array_unique($this->roles);
+
     }
 
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
+        //$this->roles = array_values($roles);
 
         return $this;
     }

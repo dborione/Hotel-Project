@@ -23,9 +23,9 @@ class ManagerCrudController extends AbstractCrudController
     {
         //yield AssociationField::new('hotel');
         //yield AssociationField::new('admin');
-        //$roles = [
-            //'Manager' => 'ROLE_MANAGER'];
-        $roles = ['ROLE_MANAGER'];
+        $roles = [
+            'Manager' => 'ROLE_MANAGER'];
+        //$roles =['ROLE_MANAGER'];
 
         return [
             TextField::new('managerFirstName'),
@@ -46,15 +46,14 @@ class ManagerCrudController extends AbstractCrudController
                 //->renderExpanded()
                 ///->renderAsBadges()
             
-            //second one gives what is written in easyadmin
+            //second parameter gives what is written in easyadmin
             ChoiceField::new('roles', 'Role')
                 //->setChoices(['Manager' => 'ROLE_MANAGER'])
-
-                ->autocomplete(true)
+                //->autocomplete(true)
                 ->setChoices(array_combine($roles, $roles))
                 ->allowMultipleChoices()
                 ->renderExpanded()
-          
+                //->renderAsBadges()
           
             //ArrayField::new('roles')
             
