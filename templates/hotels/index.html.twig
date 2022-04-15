@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Our Seven Hotels{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<section class="row">
+    {% for hotel in hotels %}
+        <div class="col-4 mt-4">
+            <h2>{{ hotel.Name }}</h2>
+            <p>{{ hotel.hotelAddress }}</p>
+            <p>{{ hotel.hotelCity }}</p>
+            <a href="{{path("app_suites")}}" class="btn">See suites</a>
+    {% endfor %}
+</section>
+{% endblock %}
+
