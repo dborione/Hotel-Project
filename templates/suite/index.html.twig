@@ -13,7 +13,7 @@
         <div class="col-4 mt-4">
             <h2>{{ suite.suiteName }}</h2>
             <p>{{ suite.suitePrice }} €</p>
-            <a href="{{path("booking_add", {id:suite.id})}}" class="btn">Add</a>
+            <a href="{{path("app_bookings_add", {id:suite.id})}}" class="btn">Add</a>
     {% endfor %}
 </section>
 {% endblock %}
