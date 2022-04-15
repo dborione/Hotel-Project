@@ -37,6 +37,10 @@ class Suite
     #[ORM\JoinColumn(nullable: false)]
     private $manager;
 
+    #[ORM\ManyToOne(targetEntity: Hotel::class, inversedBy: 'suite')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $hotel;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -164,6 +168,18 @@ class Suite
     public function setManager(?Manager $manager): self
     {
         $this->manager = $manager;
+
+        return $this;
+    }
+
+    public function getHotel(): ?Hotel
+    {
+        return $this->hotel;
+    }
+
+    public function setHotel(?Hotel $hotel): self
+    {
+        $this->hotel = $hotel;
 
         return $this;
     }
