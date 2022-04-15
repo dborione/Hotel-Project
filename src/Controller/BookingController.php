@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Suite;
+use App\Entity\Client;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,19 +23,24 @@ class BookingController extends AbstractController
     }
 
     #[Route('/add/{id}', name: 'add')]
-    public function book(Suite $suite, SessionInterface $session) 
+    public function book(Suite $suite, Client $client, SessionInterface $session) 
     { 
-        $cart = $session->get("booking",[]);
-        $id = $suite->getId();
+        $cart = $session->get('booking',[]);
+        $suite_id = $suite->getId();
 
-        if(!empty($cart[$id])){
-            $cart[$id]++;
+
+        $client_id = $client->getId();
+
+        if(!empty($cart[$suite_id])){
+            $cart[$suite_id]++;
+            $cart[$client_id]++;
         }else{
-            $panier[$id] = 1;
+            $cart[$suite_id] = 1;
+            $cart[$client_id] = 1;
         }
         
-        $session->set("booking", $cart);
+        $session->set('booking', $cart);
 
-        return $this->redirectToRoute('app_suites');
+        return $this->redirectToRoute('app_home');
     }
 }
