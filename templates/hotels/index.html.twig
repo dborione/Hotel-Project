@@ -9,9 +9,9 @@
 </style>
 
 <section class="row">
-    {% for hotel in hotels %}
+    {% for hotel in hotel %}
         <div class="col-4 mt-4">
-            <h2>{{ hotel.Name }}</h2>
+            <h2>{{ hotel.hotelName }}</h2>
             <p>{{ hotel.hotelAddress }}</p>
             <p>{{ hotel.hotelCity }}</p>
             <a href="{{path("app_suites")}}" class="btn">See suites</a>
