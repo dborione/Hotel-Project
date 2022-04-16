@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SuiteController!{% endblock %}
+{% block title %}See the suites{% endblock %}
 
 {% block body %}
 <style>
@@ -17,15 +17,16 @@
             <a href="#" class="btn">{{suite.hotel }}</a>
             <p>{{ suite.suiteDescription }}</p>
             {#<p>{{ suite.bookings }} </p>#}
-            <a href="#" class="btn">Interested? Check availability for this suite:</a>
+            {#<a href="#" class="btn">Interested? Check availability for this suite:</a>#}
+            <a href="#" class="btn">Book this suite</a>
 
-            {{ form_start(bookingForm) }}
-                {{ form_row(bookingForm.bookingStartDate) }} <p>Select dates:</p>
-                {{ form_row(bookingForm.bookingEndDate) }}
-                {{ form_row(bookingForm.clientId) }}
-                {{ form_row(bookingForm.suiteId) }}
+            {{ form_start(suiteForm) }}
+                {{ form_row(suiteForm.startDate) }} <p>Select dates:</p>
+                {{ form_row(suiteForm.endDate) }}
+                {{ form_row(suiteForm.client) }}
+                {{ form_row(suiteForm.suite) }}
                 {#<p>Select number of people:</p>#}
-            {{ form_end(bookingForm) }}
+            {{ form_end(suiteForm) }}
             {#<a href="{{path("app_bookings_add", {id:suite.id}, {id:client.id} )}}" class="btn">Book this suite</a>#}
     {% endfor %}
 </section>

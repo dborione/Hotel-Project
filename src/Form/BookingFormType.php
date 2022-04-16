@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Client;
+use App\Entity\Booking;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,15 +16,14 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class BookingFormType extends AbstractType
 {
-
     
     public function buildForm(FormBuilderInterface $builder, array $options): void 
     {
         $builder
-            ->add('booking.StartDate')
-            ->add('booking.EndDate')
-            ->add('client_id')
-            ->add('suite.id')
+            ->add('bookingStartDate')
+            ->add('bookingEndDate')
+            ->add('clientId')
+            ->add('suiteId')
             //get client id from session
             //->add($session->get('client.id'))
             //get suite id from page
@@ -32,10 +31,10 @@ class BookingFormType extends AbstractType
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver->setDefaults([
-            'data_class' => Booking::class,
-        ]);
-    }
+    //public function configureOptions(OptionsResolver $resolver): void
+    //{
+    //    $resolver->setDefaults([
+    //        'data_class' => Booking::class,
+    //    ]);
+    //}
 }
