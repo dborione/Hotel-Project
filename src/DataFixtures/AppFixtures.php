@@ -29,64 +29,84 @@ class AppFixtures extends Fixture
     {
         $faker = Faker\Factory::create();
 
-        $hotelmanager = new Manager();
-        $hotel = new Hotel();
         $admin = new Admin();
-        $client = new Client();
-        $suite = new Suite();
-        $booking = new Booking();
 
+        //Loop to make 2 fixtures
+        //for ($i=0; $i < 2; $i++) {
+            $hotelmanager = new Manager();
+        
+            //for ($j=0; $j < 2; $j++) {
+                $hotel = new Hotel();
 
-        $suite->setSuiteName('skateordie');
-        $suite->setSuiteDescription($faker->text());
-        $suite->setSuiteSlug('skate-or-die');
-        $suite->setSuitePrice($faker->numberBetween(0, 200));
-        $suite->setHotel( 
-            $hotel->setHotelName($faker->word()),
-            $hotel->setHotelCity($faker->city()),
-            $hotel->setHotelDescription($faker->text()),
-            $hotel->setHotelSlug($faker->slug()),
-            $hotel->setHotelAddress($faker->address()),
-            $hotel->setManager(  
-                $hotelmanager->setEmail('manager@test.com'),
-                $hotelmanager->setRoles(["ROLE_MANAGER"]),
-                $hotelmanager->setmanagerFirstName($faker->firstName()),
-                $hotelmanager->setmanagerLastName($faker->lastName()),
-                $hotelmanager->setPassword($this->passwordHasher->hashPassword(
-                    $hotelmanager,
-                    "manager123")),
-                )); 
-        $suite->setManager($hotelmanager);   
+                //for ($y=0; $y < 2; $y++) {
+                    $client = new Client();
+
+                    //for ($x=0; $x < 2; $x++) {
+                        $suite = new Suite();
+
+                        //for ($f=0; $f < 2; $f++) {
+                            $booking = new Booking();
+
+                            $suite->setSuiteName('skateordie');
+                            $suite->setSuiteDescription($faker->paragraph());
+                            $suite->setSuiteSlug('skate-or-die');
+                            $suite->setSuitePrice($faker->numberBetween(0, 200));
+                            $suite->setHotel(
+                                $hotel->setHotelName($faker->name()),
+                                $hotel->setHotelCity($faker->city()),
+                                $hotel->setHotelDescription($faker->paragraph()),
+                                $hotel->setHotelSlug($faker->slug()),
+                                $hotel->setHotelAddress($faker->address()),
+                                $hotel->setManager(
+                                    $hotelmanager->setEmail('manager@test.com'),
+                                    $hotelmanager->setRoles(["ROLE_MANAGER"]),
+                                    $hotelmanager->setmanagerFirstName($faker->firstName()),
+                                    $hotelmanager->setmanagerLastName($faker->lastName()),
+                                    $hotelmanager->setPassword($this->passwordHasher->hashPassword(
+                                    $hotelmanager,
+                                    "manager123")),
+                                )
+                            );
+                            $suite->setManager($hotelmanager);
         
 
-        $admin->setEmail('admin@test.com');
-        $admin->setRoles(["ROLE_ADMIN"]);
-        $admin->setPassword($this->passwordHasher->hashPassword(
-            $admin,
-            "admin123"));
+                            $admin->setEmail('admin@test.com');
+                            $admin->setRoles(["ROLE_ADMIN"]);
+                            $admin->setPassword($this->passwordHasher->hashPassword(
+                                $admin,
+                                "admin123")
+                            );
+                           
         
-        $client->setEmail('client@test.com');
-        $client->setRoles(["ROLE_USER"]);
-        $client->setclientFirstName($faker->firstName());
-        $client->setclientLastName($faker->lastName());
-        $client->setPassword($this->passwordHasher->hashPassword(
-            $client,
-            "client123"));
+                            $client->setEmail('client@test.com');
+                            $client->setRoles(["ROLE_USER"]);
+                            $client->setclientFirstName($faker->firstName());
+                            $client->setclientLastName($faker->lastName());
+                            $client->setPassword($this->passwordHasher->hashPassword(
+                                $client,
+                                "client123")
+                            );
 
 
-        $booking->setStartDate($faker->dateTimeThisCentury());
-        $booking->setEndDate($faker->dateTimeThisCentury());
-        $booking->setSuite($suite);
-        $booking->setClient($client);
+                            $booking->setStartDate($faker->dateTimeThisCentury());
+                            $booking->setEndDate($faker->dateTimeThisCentury());
+                            $booking->setSuite($suite);
+                            $booking->setClient($client);
               
-        $manager->persist($hotel);
-        $manager->persist($hotelmanager);
-        $manager->persist($admin);
-        $manager->persist($client);
-        $manager->persist($suite);
-        $manager->persist($booking);
+                            $manager->persist($hotel);
+                            $manager->persist($hotelmanager);
+                            $manager->persist($admin);
+                            $manager->persist($client);
+                            $manager->persist($suite);
+                            $manager->persist($booking);
 
-        $manager->flush();
-        
+                            $manager->flush();
+                        //}
+                    //}
+                //}
+            //}
+        //}
     }
-}               
+}
+
+           
