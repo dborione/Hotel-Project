@@ -13,9 +13,19 @@
         <div class="col-4 mt-4">
             <h2>{{ suite.suiteName }}</h2>
             <p>{{ suite.suitePrice }} €</p>
-            <p>{{ suite.hotel }}</p>
+            {#<a href="/{{hotel.hotelSlug}}" class="btn">{{suite.hotel }}</a>#}
+            <a href="#" class="btn">{{suite.hotel }}</a>
             <p>{{ suite.suiteDescription }}</p>
-            <p>{{ suite.bookings }} </p>
+            {#<p>{{ suite.bookings }} </p>#}
+            <a href="#" class="btn">Interested? Check availability for this suite:</a>
+
+            {{ form_start(bookingForm) }}
+                {{ form_row(bookingForm.bookingStartDate) }} <p>Select dates:</p>
+                {{ form_row(bookingForm.bookingEndDate) }}
+                {{ form_row(bookingForm.clientId) }}
+                {{ form_row(bookingForm.suiteId) }}
+                {#<p>Select number of people:</p>#}
+            {{ form_end(bookingForm) }}
             {#<a href="{{path("app_bookings_add", {id:suite.id}, {id:client.id} )}}" class="btn">Book this suite</a>#}
     {% endfor %}
 </section>

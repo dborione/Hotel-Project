@@ -52,10 +52,10 @@ class AppFixtures extends Fixture
                             $suite->setSuiteSlug('skate-or-die');
                             $suite->setSuitePrice($faker->numberBetween(0, 200));
                             $suite->setHotel(
-                                $hotel->setHotelName($faker->name()),
+                                $hotel->setHotelName('Best Hotel'),
                                 $hotel->setHotelCity($faker->city()),
                                 $hotel->setHotelDescription($faker->paragraph()),
-                                $hotel->setHotelSlug($faker->slug()),
+                                $hotel->setHotelSlug($faker->slug(1)),
                                 $hotel->setHotelAddress($faker->address()),
                                 $hotel->setManager(
                                     $hotelmanager->setEmail('manager@test.com'),

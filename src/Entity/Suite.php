@@ -188,4 +188,5 @@ class Suite
     {
         return $this->suiteName;
     }
+
 }
