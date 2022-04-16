@@ -8,9 +8,11 @@ use App\Entity\Admin;
 use App\Entity\Hotel;
 use App\Entity\Suite;
 use App\Entity\Client;
+use App\Entity\Booking;
 use App\Entity\Manager;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Faker\Provider\DateTime;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 
@@ -32,6 +34,7 @@ class AppFixtures extends Fixture
         $admin = new Admin();
         $client = new Client();
         $suite = new Suite();
+        $booking = new Booking();
 
 
         $suite->setSuiteName('skateordie');
@@ -53,15 +56,7 @@ class AppFixtures extends Fixture
                     $hotelmanager,
                     "manager123")),
                 )); 
-        $suite->setManager(  
-            $hotelmanager->setEmail('manager@test.com'),
-            $hotelmanager->setRoles(["ROLE_MANAGER"]),
-            $hotelmanager->setmanagerFirstName($faker->firstName()),
-            $hotelmanager->setmanagerLastName($faker->lastName()),
-            $hotelmanager->setPassword($this->passwordHasher->hashPassword(
-                $hotelmanager,
-                "manager123"))
-        );   
+        $suite->setManager($hotelmanager);   
         
 
         $admin->setEmail('admin@test.com');
@@ -77,11 +72,20 @@ class AppFixtures extends Fixture
         $client->setPassword($this->passwordHasher->hashPassword(
             $client,
             "client123"));
+
+
+        $booking->setStartDate($faker->dateTimeThisCentury());
+        $booking->setEndDate($faker->dateTimeThisCentury());
+        $booking->setSuite($suite);
+        $booking->setClient($client);
               
         $manager->persist($hotel);
         $manager->persist($hotelmanager);
         $manager->persist($admin);
         $manager->persist($client);
+        $manager->persist($suite);
+        $manager->persist($booking);
+
         $manager->flush();
         
     }
