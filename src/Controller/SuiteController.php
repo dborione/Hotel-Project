@@ -34,12 +34,12 @@ class SuiteController extends AbstractController
     { 
        
         //$client_id->setClientId($client_id);
-        $user = new Client();
+        $client = new Client();
         $suite = new Suite();
         $booking = new Booking();
 
         $suite_id = $suite->getId();
-        $user_id = $user->getId();
+        $client_id = $client->getId();
 
         //$form = $this->createForm(SuiteFormType::class, $user);
         $form = $this->createForm(SuiteFormType::class, $booking);
@@ -48,7 +48,7 @@ class SuiteController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $booking->setStartDate($form->get('bookingStartDate')->getData());
             $booking->setEndDate($form->get('bookingEndDate')->getData());
-            $booking->setClient($session->get($user_id));
+            $booking->setClient($session->get($client_id));
             $booking->setSuite($session->get($suite_id));
 
             $booking = new Booking();
