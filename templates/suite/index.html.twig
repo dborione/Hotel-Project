@@ -14,11 +14,11 @@
             <h2>{{ suite.suiteName }}</h2>
             <p>{{ suite.suitePrice }} €</p>
             {#<a href="/{{hotel.hotelSlug}}" class="btn">{{suite.hotel }}</a>#}
-            <a href="#" class="btn">{{suite.hotel }}</a>
+            <a href="/hotels" class="btn">{{suite.hotel }}</a>
             <p>{{ suite.suiteDescription }}</p>
             {#<p>{{ suite.bookings }} </p>#}
             {#<a href="#" class="btn">Interested? Check availability for this suite:</a>#}
-            <a href="#" class="btn">Book this suite</a>
+            <a href="{{path("app_bookings")}}" class="btn">Book this suite</a>
 
             {{ form_start(suiteForm) }}
                 {{ form_row(suiteForm.startDate) }} <p>Select dates:</p>

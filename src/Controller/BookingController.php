@@ -6,6 +6,8 @@ use App\Entity\Suite;
 use App\Entity\Client;
 use App\Entity\Booking;
 use App\Form\BookingFormType;
+use App\Repository\HotelRepository;
+use App\Repository\SuiteRepository;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,16 +17,43 @@ use Doctrine\Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/booking/{id_client}', name: 'app_bookings_')]
+
 class BookingController extends AbstractController
 {
-    #[Route('/suites', name: 'app_suites')]
-    public function index(): Response
+    //#[Route('/suites', name: 'app_suites')]
+    //public function index(): Response
+    //{
+        //return $this->render('booking/index.html.twig', [
+            //'controller_name' => 'BookingController',
+        //]);
+    //}
+
+    //#[Route('/booking/{client_id}', name: 'app_bookings')]
+    #[Route('/booking', name: 'app_bookings')]
+    public function book(SessionInterface $session, HotelRepository $hotelRepository, SuiteRepository $suiteRepository): Response
     {
+        $client = new Client();
+        $suite = new Suite();
+        $cart = $session->get('booking', []);
+        $suite_id = $suite->getId();
+
+        $client_id = $client->getId();
+
+        if (!empty($cart[$suite_id])) {
+            $cart[$suite_id]++;
+            $cart[$client_id]++;
+        } else {
+            $cart[$suite_id] = 1;
+            $cart[$client_id] = 1;
+        }
+        
+        $session->set('booking', $cart);
+
+        //return $this->redirectToRoute('app_home');
+
         return $this->render('booking/index.html.twig', [
-            'controller_name' => 'BookingController',
+            'suite' => $suiteRepository->findAll(),
+            'hotel' => $hotelRepository->findAll(),
         ]);
     }
-
-    
 }
