@@ -20,15 +20,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SuiteController extends AbstractController
 {
-    //#[Route('/suites', name: 'app_suites')]
-    //public function index(SuiteRepository $suiteRepository, HotelRepository $hotelRepository,)
-    //{
-        //return $this->render('suite/index.html.twig', [
-            //'bookingForm' => $form->createView(),
-            //'suite' => $suiteRepository->findAll(),
-            //'hotel' => $hotelRepository->findAll(),
-        //]);
-    //}
+
         private $security;
 
         public function __construct(Security $security)
@@ -69,7 +61,7 @@ class SuiteController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->render('suite/index.html.twig', [
+        return $this->render('booking/index.html.twig', [
             'suiteForm' => $form->createView(),
             'suite' => $suiteRepository->findAll(),
             'hotel' => $hotelRepository->findAll(),
