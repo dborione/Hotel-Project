@@ -28,13 +28,14 @@
                 {{ form_row(suiteForm.startDate) }} 
                 {{ form_row(suiteForm.endDate) }}
                 {#{{ form_row(suiteForm.client) }}#}
-                {#{{ form_row(suiteForm.suite) }}#}
+                {#{{ form_row(suiteForm.client) }}#}
+                {#{{ form_row(suiteForm.suite, {id: suite.id}) }}#}
                 {#<p>Select number of people:</p>#}
                 {#<a href="{{path("app_bookings")}}" class="btn"  type="submit">Book this suite</a>#}
                 <button type="submit" class="btn">Book this suite</button>
                
             {{ form_end(suiteForm) }}
-            {#<a href="{{path("app_bookings_add", {id:suite.id}, {id:client.id} )}}" class="btn">Book this suite</a>#}
+            {#<a href="{{path("app_bookings_add", }{id:suite.id, {id:client.id} )}}" class="btn">Book this suite</a>#}
     {% endfor %}
 </section>
 {% endblock %}

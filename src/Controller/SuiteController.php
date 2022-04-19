@@ -10,6 +10,7 @@ use App\Repository\HotelRepository;
 use App\Repository\SuiteRepository;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,30 +38,27 @@ class SuiteController extends AbstractController
 
     //#[Route('/{id}', name: '_book')]
     #[Route('/suites/{id}', name: 'app_suites')]
-    public function book(HotelRepository $hotelRepository, SuiteRepository $suiteRepository, Request $request, SessionInterface $session, EntityManagerInterface $entityManager): Response
+    public function book(ManagerRegistry $doctrine, int $id, HotelRepository $hotelRepository, SuiteRepository $suiteRepository, Request $request, SessionInterface $session, EntityManagerInterface $entityManager): Response
     { 
        
         //$client_id->setClientId($client_id);
         //$client = new Client();
         $client = $this->security->getUser();
-        $suite = new Suite();
+
+        //$suite = new Suite ();
         $booking = new Booking();
 
-        //$suite_id = $suite->getId();
-        //$client_id = $client->getId();
+        $suite_id = $doctrine->getRepository(Suite::class)->find($id);
 
-        //$form = $this->createForm(SuiteFormType::class, $user);
         $form = $this->createForm(SuiteFormType::class, $booking);
         $form->handleRequest($request);
 
-        //$booking->setStartDate($form->get('startDate')->getData());
-        //$booking->setEndDate($form->get('endDate')->getData());
 
         if ($form->isSubmitted() && $form->isValid()) {
             //$data = $form->getData();
             $booking = new Booking();
             $booking->setClient($client);
-            $booking->setSuite($suite);
+            $booking->setSuite($suite_id);
             $booking->setStartDate($form->get('startDate')->getData());
             $booking->setEndDate($form->get('endDate')->getData());
 
