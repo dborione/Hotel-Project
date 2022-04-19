@@ -59,9 +59,16 @@ class SuiteController extends AbstractController
 
             $entityManager->persist($booking);
             $entityManager->flush();
-        }
 
-        return $this->render('booking/index.html.twig', [
+            //$client_id = $client->getId();
+            //return $this->redirectToRoute('app_profile', [
+                //'id'=> $client_id
+            //]);
+            return $this->redirectToRoute('app_home');
+                
+            };
+
+        return $this->render('suite/index.html.twig', [
             'suiteForm' => $form->createView(),
             'suite' => $suiteRepository->findAll(),
             'hotel' => $hotelRepository->findAll(),
@@ -85,6 +92,6 @@ class SuiteController extends AbstractController
         
         //$session->set('booking', $cart);
 
-        //return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('app_profile');
     }
 }

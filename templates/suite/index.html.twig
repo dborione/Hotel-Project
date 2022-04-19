@@ -22,7 +22,6 @@
             {#<p>{{ suite.bookings }} </p>#}
             {#<a href="#" class="btn">Interested? Check availability for this suite:</a>#}
             
-
             {{ form_start(suiteForm) }}
                 <p>Select dates:</p>
                 {{ form_row(suiteForm.startDate) }} 
@@ -33,9 +32,9 @@
                 {#<p>Select number of people:</p>#}
                 {#<a href="{{path("app_bookings")}}" class="btn"  type="submit">Book this suite</a>#}
                 <button type="submit" class="btn">Book this suite</button>
-               
             {{ form_end(suiteForm) }}
-            {#<a href="{{path("app_bookings_add", }{id:suite.id, {id:client.id} )}}" class="btn">Book this suite</a>#}
+         
+
     {% endfor %}
 </section>
 {% endblock %}

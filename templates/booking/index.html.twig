@@ -9,12 +9,23 @@
 </style>
 
 <section class="row">
-    {% for suite in suite %}
+    {#{% for suite in suite %}
         <div class="col-4 mt-4">
             <h2>{{ suite.suiteName }}</h2>
             <p>{{ suite.suitePrice }} €</p>
             {#<a href="{{path("app_bookings_add"), {id:suite.id})}}" class="btn">Add</a>#}
             {#<a href="{{path("app_bookings_add", {id:suite.id}, {id:client.id} )}}" class="btn">Book this suite</a>#}
+    {#{% endfor %}#}
+    {% for suite in suite %}
+        <div class="col-4 mt-4">
+            <h2>{{ suite.suiteName }}</h2>
+            <p>{{ suite.suitePrice }} € per night.</p>
+            {% for hotel in hotel %}
+                <a href="{{path("app_hotels", {id: hotel.id}) }}" class="btn">{{suite.hotel }}</a>
+            {% endfor %}
+            <p>{{ suite.suiteDescription }}</p>
+            {#<p>{{ suite.bookings }} </p>#}
+            <a href="#" class="btn">Interested? Check availability for this suite!</a>
     {% endfor %}
 </section>
 {% endblock %}

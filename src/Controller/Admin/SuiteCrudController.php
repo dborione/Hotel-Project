@@ -32,7 +32,8 @@ class SuiteCrudController extends AbstractCrudController
             MoneyField::new('suitePrice')->setCurrency('EUR'),
             //CollectionField::new('manager')->allowAdd(true)
             AssociationField::new('manager'),
-            AssociationField::new('hotel')
+            AssociationField::new('hotel'),
+            //AssociationField::new('booking')->hideOnForm()
             //AssociationField::new('manager')->setFormTypeOption('disabled', true),
             //AssociationField::new('manager')->setQueryBuilder(
             //    $ManagerRepository->createQueryBuilder('manager')
