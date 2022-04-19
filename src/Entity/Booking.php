@@ -79,4 +79,13 @@ class Booking
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->id;
+        return $this->startDate;
+        return $this->endDate;
+    }
+
+   
 }

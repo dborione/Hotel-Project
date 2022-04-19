@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\HotelRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: HotelRepository::class)]
@@ -35,6 +37,14 @@ class Hotel
     #[ORM\OneToOne(inversedBy: 'hotel', targetEntity: Manager::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private $manager;
+
+    #[ORM\OneToMany(mappedBy: 'hotel', targetEntity: Suite::class)]
+    private $suite;
+
+    public function __construct()
+    {
+        $this->suite = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -121,6 +131,36 @@ class Hotel
     public function setManager(Manager $manager): self
     {
         $this->manager = $manager;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Suite>
+     */
+    public function getSuite(): Collection
+    {
+        return $this->suite;
+    }
+
+    public function addSuite(Suite $suite): self
+    {
+        if (!$this->suite->contains($suite)) {
+            $this->suite[] = $suite;
+            $suite->setHotel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSuite(Suite $suite): self
+    {
+        if ($this->suite->removeElement($suite)) {
+            // set the owning side to null (unless already changed)
+            if ($suite->getHotel() === $this) {
+                $suite->setHotel(null);
+            }
+        }
 
         return $this;
     }

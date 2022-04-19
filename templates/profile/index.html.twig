@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Account{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+   <section class="row">
+    {% for client in client %}
+        <div class="col-4 mt-4">
+            <h2>{{ client.clientFirstName }}</h2>
+            <p>{{ client.clientLastName }}</p>
+            {% for booking in booking %}
+                <p>{{ booking.suite }}</p>
+                <p>{{ booking.startDate |date('d-m-Y')}}</p>
+                <p>{{ booking.endDate |date('d-m-Y')}}</p>
+            {% endfor %}    
+    {% endfor %}
+</section>
+</div>
+{% endblock %}
