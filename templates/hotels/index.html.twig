@@ -14,7 +14,11 @@
             <h2>{{ hotel.hotelName }}</h2>
             <p>{{ hotel.hotelAddress }}</p>
             <p>{{ hotel.hotelCity }}</p>
-            <a href="{{path("app_suites")}}" class="btn">See suites</a>
+            {# <a href= path: app_suite/hotel.suite #}
+            {# {{path("app_bookings_add", {id:suite.id}#}
+            {% for suite in suite %}
+                <a href="{{path("app_suites", {id: suite.id}) }}" class="btn">See suites</a>
+            {% endfor %}
     {% endfor %}
 </section>
 {% endblock %}

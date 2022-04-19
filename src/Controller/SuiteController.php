@@ -29,7 +29,7 @@ class SuiteController extends AbstractController
     //}
 
     //#[Route('/{id}', name: '_book')]
-    #[Route('/suites', name: 'app_suites')]
+    #[Route('/suites/{id}', name: 'app_suites')]
     public function book(HotelRepository $hotelRepository, SuiteRepository $suiteRepository, Request $request, SessionInterface $session, EntityManagerInterface $entityManager): Response
     { 
        
