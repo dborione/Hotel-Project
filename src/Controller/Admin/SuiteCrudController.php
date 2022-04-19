@@ -24,7 +24,6 @@ class SuiteCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         
-
         return [
             TextField::new('suiteName'),
             TextField::new('suiteSlug'),
@@ -32,7 +31,8 @@ class SuiteCrudController extends AbstractCrudController
             //NumberField::new('suitePrice'),
             MoneyField::new('suitePrice')->setCurrency('EUR'),
             //CollectionField::new('manager')->allowAdd(true)
-            AssociationField::new('manager')
+            AssociationField::new('manager'),
+            AssociationField::new('hotel')
             //AssociationField::new('manager')->setFormTypeOption('disabled', true),
             //AssociationField::new('manager')->setQueryBuilder(
             //    $ManagerRepository->createQueryBuilder('manager')
@@ -40,7 +40,6 @@ class SuiteCrudController extends AbstractCrudController
             //        ->setParameter('some_value', '...')
             //
         ];
-
 
     }
 }
