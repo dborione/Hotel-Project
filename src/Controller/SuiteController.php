@@ -11,6 +11,7 @@ use App\Repository\SuiteRepository;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -27,6 +28,12 @@ class SuiteController extends AbstractController
             //'hotel' => $hotelRepository->findAll(),
         //]);
     //}
+        private $security;
+
+        public function __construct(Security $security)
+        {
+            $this->security = $security;
+        }
 
     //#[Route('/{id}', name: '_book')]
     #[Route('/suites/{id}', name: 'app_suites')]
@@ -34,24 +41,28 @@ class SuiteController extends AbstractController
     { 
        
         //$client_id->setClientId($client_id);
-        $client = new Client();
+        //$client = new Client();
+        $client = $this->security->getUser();
         $suite = new Suite();
         $booking = new Booking();
 
-        $suite_id = $suite->getId();
-        $client_id = $client->getId();
+        //$suite_id = $suite->getId();
+        //$client_id = $client->getId();
 
         //$form = $this->createForm(SuiteFormType::class, $user);
         $form = $this->createForm(SuiteFormType::class, $booking);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $booking->setStartDate($form->get('bookingStartDate')->getData());
-            $booking->setEndDate($form->get('bookingEndDate')->getData());
-            $booking->setClient($session->get($client_id));
-            $booking->setSuite($session->get($suite_id));
+        //$booking->setStartDate($form->get('startDate')->getData());
+        //$booking->setEndDate($form->get('endDate')->getData());
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            //$data = $form->getData();
             $booking = new Booking();
+            $booking->setClient($client);
+            $booking->setSuite($suite);
+            $booking->setStartDate($form->get('startDate')->getData());
+            $booking->setEndDate($form->get('endDate')->getData());
 
             //afficher l'availabilité:
             //render
