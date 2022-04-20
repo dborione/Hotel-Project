@@ -8,6 +8,7 @@ use App\Entity\Booking;
 use App\Form\SuiteFormType;
 use App\Repository\HotelRepository;
 use App\Repository\SuiteRepository;
+use App\Repository\ClientRepository;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -30,7 +31,7 @@ class SuiteController extends AbstractController
 
     //#[Route('/{id}', name: '_book')]
     #[Route('/suites/{id}', name: 'app_suites')]
-    public function book(ManagerRegistry $doctrine, int $id, HotelRepository $hotelRepository, SuiteRepository $suiteRepository, Request $request, SessionInterface $session, EntityManagerInterface $entityManager): Response
+    public function book(ManagerRegistry $doctrine, int $id, ClientRepository $clientRepository, HotelRepository $hotelRepository, SuiteRepository $suiteRepository, Request $request, SessionInterface $session, EntityManagerInterface $entityManager): Response
     { 
        
         //$client_id->setClientId($client_id);
@@ -72,6 +73,7 @@ class SuiteController extends AbstractController
             'suiteForm' => $form->createView(),
             'suite' => $suiteRepository->findAll(),
             'hotel' => $hotelRepository->findAll(),
+            'client' => $clientRepository->findAll(),
         ]);
 
         //////////////////

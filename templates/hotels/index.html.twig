@@ -3,80 +3,17 @@
 {% block title %}Our Seven Hotels{% endblock %}
 
 {% block body %}
-<div class="relative bg-white overflow-hidden">
-    <div class="max-w-7xl mx-auto">
-        <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
-            <svg class="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                <polygon points="50,0 100,0 50,100 0,100" />
-            </svg>
-
-            <div>
-                <div class="relative pt-6 px-4 sm:px-6 lg:px-8">
-                    <nav class="relative flex items-center justify-between sm:h-10 lg:justify-start" aria-label="Global">
-                        <div class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
-                            <div class="flex items-center justify-between w-full md:w-auto">
-                                <a href="#">
-                                    <span class="sr-only">Workflow</span>
-                                    <img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg">
-                                </a>
-                                <div class="-mr-2 flex items-center md:hidden">
-                                    <button type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-expanded="false">
-                                        <span class="sr-only">Open main menu</span>
-                                        <!-- Heroicon name: outline/menu -->
-                                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="hidden md:block md:ml-10 md:pr-4 md:space-x-8">
-                            <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Hotels</a>
-
-                            <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Suites</a>
-
-                            <a href="#" class="font-medium text-gray-900 hover:text-indigo-500">Contact</a>
-
-                            <a href="/login" class="font-medium text-indigo-600 hover:text-indigo-500">Login</a>
-
-                            <a href="/register" class="font-medium text-indigo-600 hover:text-indigo-500">Register</a>
-
-                            <div class="relative">
-                            {% for client in client %}
-                                <a href="{{path("app_profile", {id: client.id}) }}" class="btn font-medium text-indigo-600 hover:text-indigo-500">My Account</a>
-                            {% endfor %}
-                                {#<button class="font-medium text-indigo-600 hover:text-indigo-500">My Account</button>#}
-                                <div class="absolute right-0 w-40 mt-2 py-2 bg-white border shadow-xl">   
-                                    <a href="#" class="transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-purple-500 hover:text-white">
-                                        Settings
-                                    </a>
-                                    <div class="py-2">
-                                        <hr></hr>
-                                    </div>
-                                    <a href="/logout" class="transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-purple-500 hover:text-white">    
-                                        Logout
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </nav>
-
-
-            <style>
-                .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-                .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-            </style>
 
             <section class="row">
                 {% for hotel in hotel %}
                     <div class="col-4 mt-4">
-                        <h2>{{ hotel.hotelName }}</h2>
+                        <h2 class="h2 text-indigo-700">{{ hotel.hotelName }}</h2>
                         <p>{{ hotel.hotelAddress }}</p>
                         <p>{{ hotel.hotelCity }}</p>
                         {# <a href= path: app_suite/hotel.suite #}
                         {# {{path("app_bookings_add", {id:suite.id}#}
                         {% for suite in suite %}
-                            <a href="{{path("app_suites", {id: suite.id}) }}" class="btn">See suites</a>
+                            <a href="{{path("app_suites", {id: hotel.id}) }}" class="btn">See this hotel's suites</a>
                         {% endfor %}
                 {% endfor %}
             </section>

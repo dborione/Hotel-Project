@@ -8,6 +8,7 @@ use App\Entity\Booking;
 use App\Form\BookingFormType;
 use App\Repository\HotelRepository;
 use App\Repository\SuiteRepository;
+use App\Repository\ClientRepository;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,7 +31,7 @@ class BookingController extends AbstractController
 
     //#[Route('/booking/{client_id}', name: 'app_bookings')]
     #[Route('/booking', name: 'app_bookings')]
-    public function book(SessionInterface $session, HotelRepository $hotelRepository, SuiteRepository $suiteRepository): Response
+    public function book(SessionInterface $session, HotelRepository $hotelRepository, SuiteRepository $suiteRepository, ClientRepository $clientRepository): Response
     {
         $client = new Client();
         $suite = new Suite();
@@ -54,6 +55,7 @@ class BookingController extends AbstractController
         return $this->render('booking/index.html.twig', [
             'suite' => $suiteRepository->findAll(),
             'hotel' => $hotelRepository->findAll(),
+            'client' => $clientRepository->findAll(),
         ]);
     }
 }

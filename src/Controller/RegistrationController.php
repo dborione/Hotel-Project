@@ -6,6 +6,9 @@ use App\Entity\Client;
 //use App\Entity\Manager;
 use App\Form\RegistrationFormType;
 use App\Security\AppAuthenticator;
+use App\Repository\HotelRepository;
+use App\Repository\SuiteRepository;
+use App\Repository\ClientRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +22,7 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator, EntityManagerInterface $entityManager, HotelRepository $hotelRepository, SuiteRepository $suiteRepository, ClientRepository $clientRepository): Response
     {
         $user = new Client();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -51,6 +54,9 @@ class RegistrationController extends AbstractController
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
+            'hotel' => $hotelRepository->findAll(),
+            'suite' => $suiteRepository->findAll(),
+            'client' => $clientRepository->findAll()
         ]);
     }
 }
