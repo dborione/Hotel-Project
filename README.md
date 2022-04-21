@@ -8,10 +8,8 @@ Hypnos Hotels est un site internet dédié à la réservation de suites d'établ
 * PHP 8.0.17
 * Composer
 * Symfony CLI
-* Docker
-* Docker-compose
---> Verifier les pré-requis:
 
+--> Verifier les pré-requis:
 ```bash
 symfony check: requirements
 ```
