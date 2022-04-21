@@ -7,137 +7,150 @@
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}^
-            {{ asset('css/app.css') }}
+            {{ encore_entry_link_tags('app') }}
+            {#{{ asset('css/app.css') }}#}
         {% endblock %}
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
-            {{ asset('css/app.css') }}
+            {#{{ asset('css/app.css') }}#}
         {% endblock %}
     </head>
 
     <body>
     <div class="relative bg-white overflow-hidden">
-    <div class="max-w-7xl mx-auto">
-        <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
-            <svg class="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                <polygon points="50,0 100,0 50,100 0,100" />
-            </svg>
+        <div class="max-w-7xl mx-auto">
+            <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
+                <svg class="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                    <polygon points="50,0 100,0 50,100 0,100" />
+                </svg>
 
-            <div>
-                <div class="relative pt-6 px-4 sm:px-6 lg:px-8">
-                    <nav class="relative flex items-center justify-between sm:h-10 lg:justify-start" aria-label="Global">
-                        <div class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
-                            <div class="flex items-center justify-between w-full md:w-auto">
-                                <a href="/home">
-                                    <span class="sr-only">Workflow</span>
-                                    <img class="h-8 w-auto sm:h-10" src="{{ asset('/img/Logo IH 03.png')}}" alt="hotel-logo" />
-                                </a>
-                                <div class="-mr-2 flex items-center md:hidden">
-                                    <button type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-expanded="false">
-                                        <span class="sr-only">Open main menu</span>
-                                        <!-- Heroicon name: outline/menu -->
-                                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="hidden md:block md:ml-10 md:pr-4 md:space-x-8">
-                            <a href="/hotels" class="font-medium text-gray-500 hover:text-gray-900">Hotels</a>
-
-                            <a href="/suites" class="font-medium text-gray-500 hover:text-gray-900">Suites</a>
-
-                            <a href="app_hotels" class="font-medium text-gray-900 hover:text-indigo-500">Contact</a>
-
-                            <a href="/login" class="font-medium text-indigo-600 hover:text-indigo-500">Login</a>
-
-                            <a href="/register" class="font-medium text-indigo-600 hover:text-indigo-500">Register</a>
-
-                            <!-- Profile dropdown -->
-                           
-                            {% for client in client %}
-                            <div>
-                                <div>
-                                    <button 
-                                        {#type="button"#}
-                                        class="font-medium text-indigo-600 hover:text-indigo-500 origin-top-right absolute right-0"
-                                        id="user-menu" 
-                                        aria-label="User menu"
-                                        aria-haspopup="true">
-                                            My Account    
-                                    </button>
-                                </div>
-                                
-                                <!--
-                                    Profile dropdown panel, show/hide based on dropdown state.
-
-                                    Entering: "transition ease-out duration-100"
-                                        From: "transform opacity-0 scale-95"
-                                        To: "transform opacity-100 scale-100"
-                                    Leaving: "transition ease-in duration-75"
-                                        From: "transform opacity-100 scale-100"
-                                        To: "transform opacity-0 scale-95"
-                                -->
-                                <div class="invisible profile-menu origin-top-right absolute right-0 w-40 mt-2 py-2 bg-white border shadow-xl" 
-                                    role="menu" 
-                                    aria-orientation="vertical" 
-                                    aria-labelledby="user-menu" 
-                                    tabindex="-1">   
-                                    <!-- Active: "bg-gray-100", Not Active: "" -->
-                                    {% if is_granted('ROLE_USER') %}
-                                        <a href="{{path("app_profile", {id: client.id}) }}" class="transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-purple-500 hover:text-white" role="menuitem">
-                                        Profile Page
-                                        </a>
-
-                                    {% elseif is_granted('ROLE_MANAGER') %}
-                                        <a href="/manager-panel" class="text-medium transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-purple-500 hover:text-white" role="menuitem">
-                                        Manager Panel
-                                        </a>
-
-                                    {% elseif is_granted('ROLE_ADMIN') %}
-                                    <a href="/admin" class="font-medium transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-purple-500 hover:text-white" role="menuitem">
-                                        Admin Panel
+                <div>
+                    <div class="relative pt-6 px-4 sm:px-6 lg:px-8">
+                        <nav class="relative flex items-center justify-between sm:h-10 lg:justify-start" aria-label="Global">
+                            <div class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
+                                <div class="flex items-center justify-between w-full md:w-auto">
+                                    <a href="/home">
+                                        <span class="sr-only">Workflow</span>
+                                        <img class="h-8 w-auto sm:h-10" src="{{ asset('/img/Logo IH 03.png')}}" alt="hotel-logo" />
                                     </a>
-                                    {% endif %}
-
-                                    <a href="#" class="transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-purple-500 hover:text-white" role="menuitem">
-                                        Settings
-                                    </a>
-                                    <div class="py-2">
-                                        <hr></hr>
+                                    <div class="-mr-2 flex items-center md:hidden">
+                                        <button type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-expanded="false">
+                                            <span class="sr-only">Open main menu</span>
+                                            <!-- Heroicon name: outline/menu -->
+                                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                                            </svg>
+                                        </button>
                                     </div>
-                                    <a href="/logout" class="transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-purple-500 hover:text-white" role="menuitem">    
-                                        Logout
-                                    </a>
                                 </div>
-                                {% endfor %}
                             </div>
-
-                            <!-- Mobile menu, show/hide based on menu state. -->
-                           {#  <div class="sm:hidden" id="mobile-menu">
-                                <div class="px-2 pt-2 pb-3 space-y-1">
-                                <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                            <div class="hidden md:block md:ml-10 md:pr-4 md:space-x-8">
                                 <a href="/hotels" class="font-medium text-gray-500 hover:text-gray-900">Hotels</a>
+
                                 <a href="/suites" class="font-medium text-gray-500 hover:text-gray-900">Suites</a>
-                                <a href="app_hotels" class="font-medium text-gray-900 hover:text-indigo-500">Contact</a>
+
+                                <a href="#" class="font-medium text-gray-900 hover:text-indigo-500">Contact</a>
+
                                 <a href="/login" class="font-medium text-indigo-600 hover:text-indigo-500">Login</a>
+
                                 <a href="/register" class="font-medium text-indigo-600 hover:text-indigo-500">Register</a>
-                            </div> #}
 
-                        </div>
-                    </nav>
+                                <!-- Profile dropdown -->
+                                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                                    {% for client in client %}
+                                    <div >
+                                        <div>
+                                            <button 
+                                                {#type="button"#}
+                                                class="font-medium text-indigo-600 hover:text-indigo-500 origin-top-right absolute right-0"
+                                                id="user-menu" 
+                                                aria-label="user menu"
+                                                aria-haspopup="true">
+                                                    My Account    
+                                            </button>
+                                        </div>
+                                        
+                                        <!--
+                                            Profile dropdown panel, show/hide based on dropdown state.
 
+                                            Entering: "transition ease-out duration-100"
+                                                From: "transform opacity-0 scale-95"
+                                                To: "transform opacity-100 scale-100"
+                                            Leaving: "transition ease-in duration-75"
+                                                From: "transform opacity-100 scale-100"
+                                                To: "transform opacity-0 scale-95"
+                                        -->
+                                        <div class="invisible profile-menu origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg">
+                                        <div 
+                                            class= " py-1 rounded-md bg-white shadow-xs"
+                                            role="menu" 
+                                            aria-orientation="vertical" 
+                                            aria-labelledby="user-menu-button" 
+                                            tabindex="-1"
+                                        >
+                                            
+                                            <!-- Active: "bg-gray-100", Not Active: "" -->
+                                            {% if is_granted('ROLE_USER') %}
+                                                <a href="{{path("app_profile", {id: client.id}) }}" class="transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-purple-500 hover:text-white" role="menuitem">
+                                                Profile Page
+                                                </a>
 
-            <style>
-                .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-                .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-            </style>
+                                            {% elseif is_granted('ROLE_MANAGER') %}
+                                                <a href="/manager-panel" class="text-medium transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-purple-500 hover:text-white" role="menuitem">
+                                                Manager Panel
+                                                </a>
 
-            <script src={{ asset("/app.js")}}></script>
-        {% block body %}
+                                            {% elseif is_granted('ROLE_ADMIN') %}
+                                                <a href="/admin" class="font-medium transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-purple-500 hover:text-white" role="menuitem">
+                                                Admin Panel
+                                                </a>
+                                            {% endif %}
+
+                                            <a href="#" class="transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-purple-500 hover:text-white" role="menuitem">
+                                                Settings
+                                            </a>
+                                            <div class="py-2">
+                                                <hr></hr>
+                                            </div>
+                                            <a href="/logout" class="transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-purple-500 hover:text-white" role="menuitem">    
+                                                Logout
+                                            </a>
+                                        </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+
+                            
+                                <!-- Mobile menu, show/hide based on menu state. -->
+                                {#  <div class="sm:hidden" id="mobile-menu">
+                                    <div class="px-2 pt-2 pb-3 space-y-1">
+                                    <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                                    <a href="/hotels" class="font-medium text-gray-500 hover:text-gray-900">Hotels</a>
+                                    <a href="/suites" class="font-medium text-gray-500 hover:text-gray-900">Suites</a>
+                                    <a href="app_hotels" class="font-medium text-gray-900 hover:text-indigo-500">Contact</a>
+                                    <a href="/login" class="font-medium text-indigo-600 hover:text-indigo-500">Login</a>
+                                    <a href="/register" class="font-medium text-indigo-600 hover:text-indigo-500">Register</a>
+                                </div> #}
+                            
+
+                            </div>
+                        </nav>
+                        {% block body %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                {#<style>
+                    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+                    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+                </style>#}
+
+            
+   
         <!--
         <div class="relative bg-white overflow-hidden">
             <div class="max-w-7xl mx-auto">
@@ -194,6 +207,19 @@
        <!--
         </div>
         -->
-        {% endblock %}
     </body>
+
+    <div class="footer">
+        <div>
+            <a href="/admin" class="font-medium text-indigo-600 hover:text-indigo-500">Administration Panel</a>
+        </div>
+        <div>
+            <a href="/manager-panel" class="font-medium text-indigo-600 hover:text-indigo-500">Manager Access</a>
+        </div>
+        Marketing
+        Page Sections
+        CTA Sections
+    </div>
+
+<script src={{ asset("/app.js")}}></script>
 </html>
