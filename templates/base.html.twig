@@ -5,15 +5,18 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
+            {{ encore_entry_link_tags('app') }}^
+            {{ asset('css/app.css') }}
         {% endblock %}
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+            {{ asset('css/app.css') }}
         {% endblock %}
     </head>
-    
+
     <body>
     <div class="relative bg-white overflow-hidden">
     <div class="max-w-7xl mx-auto">
@@ -29,7 +32,7 @@
                             <div class="flex items-center justify-between w-full md:w-auto">
                                 <a href="/home">
                                     <span class="sr-only">Workflow</span>
-                                    <img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg">
+                                    <img class="h-8 w-auto sm:h-10" src="{{ asset('/img/Logo IH 03.png')}}" alt="hotel-logo" />
                                 </a>
                                 <div class="-mr-2 flex items-center md:hidden">
                                     <button type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-expanded="false">
@@ -54,12 +57,13 @@
                             <a href="/register" class="font-medium text-indigo-600 hover:text-indigo-500">Register</a>
 
                             <!-- Profile dropdown -->
+                           
                             {% for client in client %}
-                            <div class="ml-3 relative">
+                            <div>
                                 <div>
                                     <button 
                                         {#type="button"#}
-                                        class="font-medium text-indigo-600 hover:text-indigo-500" 
+                                        class="font-medium text-indigo-600 hover:text-indigo-500 origin-top-right absolute right-0"
                                         id="user-menu" 
                                         aria-label="User menu"
                                         aria-haspopup="true">
@@ -83,9 +87,22 @@
                                     aria-labelledby="user-menu" 
                                     tabindex="-1">   
                                     <!-- Active: "bg-gray-100", Not Active: "" -->
-                                    <a href="{{path("app_profile", {id: client.id}) }}" class="transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-purple-500 hover:text-white" role="menuitem">
+                                    {% if is_granted('ROLE_USER') %}
+                                        <a href="{{path("app_profile", {id: client.id}) }}" class="transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-purple-500 hover:text-white" role="menuitem">
                                         Profile Page
+                                        </a>
+
+                                    {% elseif is_granted('ROLE_MANAGER') %}
+                                        <a href="/manager-panel" class="text-medium transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-purple-500 hover:text-white" role="menuitem">
+                                        Manager Panel
+                                        </a>
+
+                                    {% elseif is_granted('ROLE_ADMIN') %}
+                                    <a href="/admin" class="font-medium transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-purple-500 hover:text-white" role="menuitem">
+                                        Admin Panel
                                     </a>
+                                    {% endif %}
+
                                     <a href="#" class="transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-purple-500 hover:text-white" role="menuitem">
                                         Settings
                                     </a>
@@ -100,7 +117,7 @@
                             </div>
 
                             <!-- Mobile menu, show/hide based on menu state. -->
-                            <div class="sm:hidden" id="mobile-menu">
+                           {#  <div class="sm:hidden" id="mobile-menu">
                                 <div class="px-2 pt-2 pb-3 space-y-1">
                                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                                 <a href="/hotels" class="font-medium text-gray-500 hover:text-gray-900">Hotels</a>
@@ -108,7 +125,7 @@
                                 <a href="app_hotels" class="font-medium text-gray-900 hover:text-indigo-500">Contact</a>
                                 <a href="/login" class="font-medium text-indigo-600 hover:text-indigo-500">Login</a>
                                 <a href="/register" class="font-medium text-indigo-600 hover:text-indigo-500">Register</a>
-                            </div>
+                            </div> #}
 
                         </div>
                     </nav>
@@ -119,6 +136,7 @@
                 .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
             </style>
 
+            <script src={{ asset("/app.js")}}></script>
         {% block body %}
         <!--
         <div class="relative bg-white overflow-hidden">

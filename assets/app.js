@@ -11,6 +11,8 @@ import './styles/app.css';
 // start the Stimulus application
 import './bootstrap';
 
+import 'flowbite';
+
 const navbarBtn = document.querySelector(".close-profile-bar");
 const profileMenu = document.querySelector(".profile-menu");
 

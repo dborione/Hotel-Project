@@ -33,7 +33,7 @@ class SuiteController extends AbstractController
     #[Route('/suites/{id}', name: 'app_suites')]
     public function book(ManagerRegistry $doctrine, int $id, ClientRepository $clientRepository, HotelRepository $hotelRepository, SuiteRepository $suiteRepository, Request $request, SessionInterface $session, EntityManagerInterface $entityManager): Response
     { 
-       
+        
         //$client_id->setClientId($client_id);
         //$client = new Client();
         $client = $this->security->getUser();
