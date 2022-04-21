@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Suite;
+use App\Entity\Booking;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -41,9 +42,14 @@ class ManagerDashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Suites', 'fas fa-hotel', Suite::class);
-        yield MenuItem::linkToLogout('Logout', 'fa fa-exit');
-        //
+        return [
+            MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
+            MenuItem::linkToCrud('Suites', 'fas fa-hotel', Suite::class),
+
+            MenuItem::section('Bookings'),
+            MenuItem::linkToCrud('Bookings', 'fas fa-calendar-check', Booking::class),
+
+            MenuItem::linkToLogout('Logout', 'fa fa-arrow-left'),
+        ];
     }
 }
