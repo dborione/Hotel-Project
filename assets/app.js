@@ -10,3 +10,17 @@ import './styles/app.css';
 
 // start the Stimulus application
 import './bootstrap';
+
+const navbarBtn = document.querySelector(".close-profile-bar");
+const profileMenu = document.querySelector(".profile-menu");
+
+navbarBtn.addEventListener("click", () => {
+    let results = profileMenu.classList.contains('invisible');
+    if(results){
+        profileMenu.classList.remove('invisible');
+        profileMenu.classList.add('visible');
+    } else {
+        profileMenu.classList.remove('visible');
+        profileMenu.classList.add('invisible');
+    }
+});
