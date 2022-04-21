@@ -26,3 +26,19 @@ navbarBtn.addEventListener("click", () => {
         profileMenu.classList.add('invisible');
     }
 });
+
+
+//const targetEl = document.getElementById('tooltipContent');
+
+// set the element that trigger the tooltip using hover or click
+const targetEl = document.getElementById('dropdownDefault');
+const triggerEl = document.getElementById('dropdownId');
+
+/*
+* targetEl: required
+* triggerEl: required
+* options: optional
+*/
+const tooltip = new Tooltip(targetEl, triggerEl, options);
+    tooltip.show();
+    tooltip.hide();
