@@ -59,7 +59,7 @@ class SuiteController extends AbstractController
 
             $startDate = $booking->getStartDate()->getTimestamp();
             $endtDate = $booking->getEndDate()->getTimestamp();
-
+            
             $client = $this->getUser();
             $booking->setClient($this->getUser($client));
             $booking->setSuite($suite_id);
@@ -76,6 +76,8 @@ class SuiteController extends AbstractController
             return $this->redirectToRoute('app_home');
                 
             };
+
+        
 
         return $this->render('suite/index.html.twig', [
             'suiteForm' => $form->createView(),
