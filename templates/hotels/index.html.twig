@@ -11,9 +11,8 @@
                         <p>{{ hotel.hotelCity }}</p>
                         {# <a href= path: app_suite/hotel.suite #}
                         {# {{path("app_bookings_add", {id:suite.id}#}
-                        {% for suite in suite %}
-                            <a href="{{path("app_bookings", {id: hotel.id}) }}" class="btn">See this hotel's suites</a>
-                        {% endfor %}
+                        <a href="{{path("hotel_id", {id: hotel.id}) }}" class="btn text-indigo-700">See this hotel's suites</a>
+                       
                 {% endfor %}
             </section>
         </div>
